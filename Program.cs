@@ -42,6 +42,32 @@ namespace UniMIDI {
                     int n = (ev.Key % 12);
                     bool isBlackNote = n == 1 || n == 3 || n == 6 || n == 8 || n == 10;
                     string blackChar = (isBlackNote ? 38 : 48).ToString();
+                    
+                    if (args.Length() == 2 && args[1] == "nocolor") {
+                        switch ((int)ev.Channel % 5) {
+                            case 0:
+                                notes[ev.Key] = "#";
+                                break;
+                            case 1:
+                                notes[ev.Key] = "%";
+                                break;
+                            case 2:
+                                notes[ev.Key] = "*";
+                                break;
+                            case 3:
+                                notes[ev.Key] = "@";
+                                break;
+                            case 4:
+                                notes[ev.Key] = "!";
+                                break;
+                            case 5:
+                                notes[ev.Key] = "?";
+                                break;
+                            default:
+                                notes[ev.Key] = "#";
+                                break;
+                        }
+                    } else {
                     switch ((int)ev.Channel % 8) {
                         case 0:
                             notes[ev.Key] = "\u001b["+blackChar+";5;196m"+"#"+"\x1b[0m";
@@ -70,6 +96,7 @@ namespace UniMIDI {
                         default:
                             notes[ev.Key] = "#";
                             break;
+                    }
                     }
                     numOverlaps[ev.Key]++;
                 } else if (e is NoteOffEvent) {
