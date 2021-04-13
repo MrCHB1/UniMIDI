@@ -10,4 +10,4 @@ If you have .NET Runtime installed (Core 3.1 is recommended, but you can also gi
 - `[]` is required
 - `<>` is optional
 
-UniMIDI will simply visualize the notes played as time progresses. (Audio is not yet implemented)
+UniMIDI will simply visualize the notes played as time progresses. (Audio is not yet implemented (on Linux))
