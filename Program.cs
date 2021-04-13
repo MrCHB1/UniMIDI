@@ -115,7 +115,7 @@ namespace UniMIDI {
                         notes[ev.Key] = ".";
                 }
 
-                if (e is NoteOnEvent || e is NoteOffEvent || e is PolyphonicKeyPressureEvent || e is PitchWheelEvent) {
+                if (e is NoteOnEvent || e is NoteOffEvent || e is PolyphonicKeyPressureEvent || e is PitchWheelChangeEvent) {
                     try {
                         var data = e.GetData();
                         uint d = 0;
