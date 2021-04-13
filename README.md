@@ -10,4 +10,7 @@ If you have .NET Runtime installed (Core 3.1 is recommended, but you can also gi
 - `[]` is required
 - `<>` is optional
 
+If not, you can find .NET 3.1 here:
+https://dotnet.microsoft.com/download/dotnet/3.1
+
 UniMIDI will simply visualize the notes played as time progresses. (Audio is not yet implemented (on Linux))
