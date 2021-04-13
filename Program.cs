@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Media;
 using System.Windows;
+using System.IO;
 using MIDIModificationFramework;
 using MIDIModificationFramework.MIDIEvents;
 using System.Runtime.InteropServices;
@@ -13,12 +14,20 @@ namespace UniMIDI {
     public class Program {
 
         static void Main(string[] args) {
+            try {
             MidiFile file = new MidiFile(args[0]);
             var merge = Mergers.MergeSequences(file.IterateTracks()).ChangePPQ(file.PPQ, 1).CancelTempoEvents(250000);
 
             var time = new Stopwatch();
             time.Start();
             double midiTime = 0;
+
+            try {
+                KDMAPI.InitializeKDMAPIStream();
+                Console.WriteLine("KDMAPI Initialized!");
+            } catch {
+                Console.WriteLine("An error occurred while KDMAPI tried to initialize the stream, continuing without audio");
+            }
 
             string[] notes = Enumerable.Repeat<string>(".", 128).ToArray();
             int[] numOverlaps = Enumerable.Repeat<int>(0, 128).ToArray();
@@ -43,7 +52,7 @@ namespace UniMIDI {
                     bool isBlackNote = n == 1 || n == 3 || n == 6 || n == 8 || n == 10;
                     string blackChar = (isBlackNote ? 38 : 48).ToString();
                     
-                    if (args.Length == 2 && args[1] == "nocolor") {
+                    if (args.Length == 2 && args.Contains("noColor")) {
                         switch ((int)ev.Channel % 5) {
                             case 0:
                                 notes[ev.Key] = "#";
@@ -105,9 +114,35 @@ namespace UniMIDI {
                     if (numOverlaps[ev.Key] == 0)
                         notes[ev.Key] = ".";
                 }
+
+                if (e is NoteOnEvent || e is NoteOffEvent || e is PolyphonicKeyPressureEvent || e is PitchWheelEvent) {
+                    try {
+                        var data = e.GetData();
+                        uint d = 0;
+                        for (int i = data.Length - 1; i >= 0; i--)
+                            d = (d << 8) | data[i];
+                        KDMAPI.SendDirectData(d);
+                    } catch {
+                        // Ignore the error and do not send any message
+                    }
             }
             midiEnded = true;
             noteDisplay.Join();
+            try {
+                 KDMAPI.TerminateKDMAPIStream();
+            } catch {
+                 // Still ignore the error
+            }
+
+            } catch (FileNotFoundException) {
+                Console.WriteLine("Invalid file directory, or file does not exist.");
+            } catch (IndexOutOfRangeException) {
+                Console.WriteLine((args.Length == 0 ? "No arguments specified" : @"Usage:
+[]: Required
+<>: Optional
+dotnet run [/path/to/midifile.mid] <nocolor>
+"));
+            }
         }
     }
 }
