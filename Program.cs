@@ -125,6 +125,7 @@ namespace UniMIDI {
                     } catch {
                         // Ignore the error and do not send any message
                     }
+                }
             }
             midiEnded = true;
             noteDisplay.Join();
