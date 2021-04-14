@@ -53,7 +53,7 @@ namespace UniMIDI {
                     string blackChar = (isBlackNote ? 38 : 48).ToString();
                     
                     if (args.Length == 2 && args.Contains("noColor")) {
-                        switch ((int)ev.Channel % 5) {
+                        switch ((int)ev.Channel % 8) {
                             case 0:
                                 notes[ev.Key] = "#";
                                 break;
@@ -71,6 +71,12 @@ namespace UniMIDI {
                                 break;
                             case 5:
                                 notes[ev.Key] = "?";
+                                break;
+                            case 6:
+                                notes[ev.Key] = "`";
+                                break;
+                            case 7:
+                                notes[ev.Key] = "+";
                                 break;
                             default:
                                 notes[ev.Key] = "#";
