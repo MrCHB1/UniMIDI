@@ -52,7 +52,7 @@ namespace UniMIDI {
                     bool isBlackNote = n == 1 || n == 3 || n == 6 || n == 8 || n == 10;
                     string blackChar = (isBlackNote ? 38 : 48).ToString();
                     
-                    if (args.Length == 2 && args.Contains("noColor")) {
+                    if (args.Length == 2 && (args.Contains("noColor") || args.Contains("nocolor"))) {
                         switch ((int)ev.Channel % 8) {
                             case 0:
                                 notes[ev.Key] = "#";
