@@ -31,6 +31,7 @@ namespace UniMIDI {
 
             string[] notes = Enumerable.Repeat<string>(".", 128).ToArray();
             int[] numOverlaps = Enumerable.Repeat<int>(0, 128).ToArray();
+            string[] noteColors = File.ReadAllLines("channelColorConfig.txt");
             bool midiEnded = false;
 
             var noteDisplay = new Thread(() => {
@@ -83,7 +84,7 @@ namespace UniMIDI {
                                 break;
                         }
                     } else {
-                    switch ((int)ev.Channel % 8) {
+                    /*switch ((int)ev.Channel % 8) {
                         case 0:
                             notes[ev.Key] = "\u001b["+blackChar+";5;196m"+"#"+"\x1b[0m";
                             break;
@@ -111,7 +112,11 @@ namespace UniMIDI {
                         default:
                             notes[ev.Key] = "#";
                             break;
-                    }
+                    }*/
+                    var RVal = noteColors[ev.Channel%noteColors.Length].Split(" ")[0];
+                    var GVal = noteColors[ev.Channel%noteColors.Length].Split(" ")[1];
+                    var BVal = noteColors[ev.Channel%noteColors.Length].Split(" ")[2];
+                    notes[ev.Key] = "\u001b["+blackChar+";2;"+RVal+";"+GVal+";"+BVal+"m"+"#"+"\x1b[0m";
                     }
                     numOverlaps[ev.Key]++;
                 } else if (e is NoteOffEvent) {
