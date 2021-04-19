@@ -113,9 +113,9 @@ namespace UniMIDI {
                             notes[ev.Key] = "#";
                             break;
                     }*/
-                    var RVal = noteColors[ev.Channel%noteColors.Length].Split(" ")[0];
-                    var GVal = noteColors[ev.Channel%noteColors.Length].Split(" ")[1];
-                    var BVal = noteColors[ev.Channel%noteColors.Length].Split(" ")[2];
+                    var RVal = noteColors[(int)ev.Channel%noteColors.Length].Split(" ")[0];
+                    var GVal = noteColors[(int)ev.Channel%noteColors.Length].Split(" ")[1];
+                    var BVal = noteColors[(int)ev.Channel%noteColors.Length].Split(" ")[2];
                     notes[ev.Key] = "\u001b["+blackChar+";2;"+RVal+";"+GVal+";"+BVal+"m"+"#"+"\x1b[0m";
                     }
                     numOverlaps[ev.Key]++;
