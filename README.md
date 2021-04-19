@@ -15,7 +15,7 @@ https://dotnet.microsoft.com/download/dotnet/3.1
 
 UniMIDI will simply visualize the notes played as time progresses. (Audio is not yet implemented (on Linux))
 
-# Notes
-__For Windows 10 users__
+### Notes
+# For Windows 10 Users
 If you're planning to run UniMIDI with colors, I'd recommend that you use **Windows Powershell** for this, otherwise the notes would visualize wrong and wouldn't work properly.
 - If the notes do not visualize correctly, stop the process, then re-run again with the argument "noColor".
