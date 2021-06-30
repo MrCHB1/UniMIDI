@@ -19,5 +19,6 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.13.0" />
     <PackageReference Include="CSCore" Version="1.2.1.2" />
     <PackageReference Include="Pastel" Version="2.1.0" />
+    <PackageReference Include="System.Windows.Extensions" Version="5.0.0" />
   </ItemGroup>
 </Project>
