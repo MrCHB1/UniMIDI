@@ -13,11 +13,25 @@
     <Reference Include="OmniMIDI">
       <HintPath>.\OmniMIDI.dll</HintPath>
     </Reference>
+    <Reference Include="Bass.Net">
+      <HintPath>.\Bass.Net.dll</HintPath>
+    </Reference>
+    <Content Include="Audio/bass.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audio/bassmidi.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Reference Include="Syste.Windows.Forms">
+      <HintPath>.\System.Windows.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.0" />
+    <PackageReference Include="Colorful.Console" Version="1.2.15" />
     <PackageReference Include="CSCore" Version="1.2.1.2" />
+    <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
     <PackageReference Include="Pastel" Version="2.1.0" />
     <PackageReference Include="System.Windows.Extensions" Version="5.0.0" />
   </ItemGroup>
