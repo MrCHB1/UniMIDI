@@ -1,4 +1,4 @@
-﻿using MIDIModificationFramework.MIDIEvents;
+using MIDIModificationFramework.MIDIEvents;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,14 +33,18 @@ namespace MIDIModificationFramework
 
         public bool Ended { get; private set; } = false;
 
-        internal EventParser(IByteReader reader)
+        public int track { get; set; } = 0;
+
+        internal EventParser(IByteReader reader, int track)
         {
             this.reader = reader;
+            this.track = track;
         }
 
-        public EventParser(Stream reader)
+        public EventParser(Stream reader, int track)
         {
             this.reader = new StreamByteReader(reader);
+            this.track = track;
         }
 
         uint ReadVariableLen()
@@ -90,7 +94,7 @@ namespace MIDIModificationFramework
                 byte note = Read();
                 byte vel = Read();
                 if (vel == 0) return new NoteOffEvent(delta, channel, note);
-                return new NoteOnEvent(delta, channel, note, vel);
+                return new NoteOnEvent(delta, channel, note, vel, this.track);
             }
             else if (comm == 0b10000000)
             {
@@ -209,9 +213,9 @@ namespace MIDIModificationFramework
                     {
                         if (data.Length == 8)
                         {
-                            return new ColorEvent(delta, data[2], data[4], data[5], data[6], data[7]);
+                            return new ColorEvent(delta, data[2], data[4], data[5], data[6], data[7], track);
                         }
-                        return new ColorEvent(delta, data[2], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
+                        return new ColorEvent(delta, data[2], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], track);
                     }
                     else
                         return new TextEvent(delta, command, data);
