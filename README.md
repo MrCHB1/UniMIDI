@@ -22,3 +22,6 @@ If not, you can find .NET 5 here:
 https://dotnet.microsoft.com/download/dotnet/5.0
 
 UniMIDI will simply visualize the notes played as time progresses.
+
+### Preview
+![preview1](/preview1.jpg)
