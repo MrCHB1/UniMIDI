@@ -13,7 +13,7 @@ If you have a .NET Runtime installed (.NET 5 is recommended), go ahead and type 
 Available Arguments:
 - `-use256Keys`
 - `-playbackSpeed [speed]`
-- `cm [Color Method]`
+- `-cm [Color Method]`
     * `0: Colors notes by channel`
     * `1: Colors notes by track/channel (Recommended for MIDIs converted from images)`
     * `2: Colors notes by track`
