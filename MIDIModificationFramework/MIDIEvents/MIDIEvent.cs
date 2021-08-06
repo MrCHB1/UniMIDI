@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +9,7 @@ namespace MIDIModificationFramework
     public abstract class MIDIEvent
     {
         double deltatime;
+        public int Track = 0;
         public double DeltaTime
         {
             get => deltatime;
@@ -22,6 +23,12 @@ namespace MIDIModificationFramework
         public MIDIEvent(double delta)
         {
             DeltaTime = delta;
+        }
+
+        public MIDIEvent(double delta, int track)
+        {
+            DeltaTime = delta;
+            Track = track;
         }
         public abstract byte[] GetData();
 
