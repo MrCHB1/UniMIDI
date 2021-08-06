@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -60,7 +60,7 @@ namespace MIDIModificationFramework
 
         public byte Read()
         {
-            if (Pushback != -1)
+            /*if (Pushback != -1)
             {
                 byte _b = (byte)Pushback;
                 Pushback = -1;
@@ -75,7 +75,8 @@ namespace MIDIModificationFramework
                 UpdateBuffer(pos);
                 return b;
             }
-            else throw new EndOfStreamException();
+            else throw new EndOfStreamException();*/
+            return ReadFast();
         }
 
         public byte ReadFast()
