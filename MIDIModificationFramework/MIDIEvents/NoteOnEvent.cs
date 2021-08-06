@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +16,16 @@ namespace MIDIModificationFramework.MIDIEvents
             Velocity = velocity;
         }
 
+        public NoteOnEvent(double delta, byte channel, byte key, byte velocity, int track) : base(delta, key, channel)
+        {
+            Key = key;
+            Velocity = velocity;
+            Track = track;
+        }
+
         public override MIDIEvent Clone()
         {
-            return new NoteOnEvent(DeltaTime, Channel, Key, Velocity);
+            return new NoteOnEvent(DeltaTime, Channel, Key, Velocity, Track);
         }
 
         public override byte[] GetData()
