@@ -52,7 +52,7 @@ namespace UniMIDI {
 
             try {
                 double playbackSpeed = 1;
-                MIDIPlayer player = new MIDIPlayer(args[0], 0, 256);
+                MIDIPlayer player = new MIDIPlayer(args[0], 0, 128);
                 int colorMethod = 0;
 
                 if (args.Contains("-playbackSpeed"))
