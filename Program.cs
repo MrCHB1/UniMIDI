@@ -52,7 +52,7 @@ namespace UniMIDI {
             
             if (!File.Exists("./channelColorConfig.txt") {
                 using (FileStream fs = File.Create("channelColorConfig.txt") {
-                    Byte[] defaultColors = new UTF8Encoding(true).GetBytes(@"255 0 0
+                    byte[] defaultColors = new UTF8Encoding(true).GetBytes(@"255 0 0
 255 128 0
 255 255 0
 0 255 0
