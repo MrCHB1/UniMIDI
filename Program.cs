@@ -49,6 +49,21 @@ namespace UniMIDI {
                 State = Path.GetFileName(args[0]),
                 Timestamps = new Timestamps(DateTime.UtcNow)
             });
+            
+            if (!File.Exists("./channelColorConfig.txt") {
+                using (FileStream fs = File.Create("channelColorConfig.txt") {
+                    Byte[] defaultColors = new UTF8Encoding(true).GetBytes(@"255 0 0
+    255 128 0
+    255 255 0
+    0 255 0
+    0 255 255
+    0 0 255
+    128 0 255
+    255 0 255
+    ");
+                    fs.Write(defaultColors, 0, defaultColors.length);
+                }
+            }
 
             try {
                 double playbackSpeed = 1;
