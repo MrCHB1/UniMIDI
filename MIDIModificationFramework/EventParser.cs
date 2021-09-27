@@ -35,13 +35,13 @@ namespace MIDIModificationFramework
 
         public int track { get; set; } = 0;
 
-        internal EventParser(IByteReader reader, int track)
+        internal EventParser(IByteReader reader, int track = 0)
         {
             this.reader = reader;
             this.track = track;
         }
 
-        public EventParser(Stream reader, int track)
+        public EventParser(Stream reader, int track = 0)
         {
             this.reader = new StreamByteReader(reader);
             this.track = track;
