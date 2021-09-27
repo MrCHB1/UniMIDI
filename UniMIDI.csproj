@@ -13,19 +13,6 @@
     <Reference Include="OmniMIDI">
       <HintPath>.\OmniMIDI.dll</HintPath>
     </Reference>
-    <Reference Include="Bass.Net">
-      <HintPath>.\Bass.Net.dll</HintPath>
-    </Reference>
-    <Content Include="Audio/bass.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Audio/bassmidi.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Reference Include="Syste.Windows.Forms">
-      <HintPath>.\System.Windows.Forms.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.0" />
